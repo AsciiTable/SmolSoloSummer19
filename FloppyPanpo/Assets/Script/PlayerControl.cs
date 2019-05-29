@@ -20,5 +20,6 @@ public class PlayerControl : MonoBehaviour
     {
         float deltaX = Input.GetAxis("Horizontal") * walkSpeed;
         float deltaY = Input.GetAxis("Vertical") * jumpSpeed;
+        GetComponent<Rigidbody2D>().transform.Translate((deltaX), 0f, 0f);
     }
 }
