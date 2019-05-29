@@ -622,6 +622,7 @@ GameObject:
   - component: {fileID: 2025919776}
   - component: {fileID: 2025919778}
   - component: {fileID: 2025919779}
+  - component: {fileID: 2025919780}
   m_Layer: 8
   m_Name: Panpo
   m_TagString: Player
@@ -667,7 +668,7 @@ SpriteRenderer:
   m_SortingLayerID: -1010987225
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 284a61f43bae7004ebedeba260fda5e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 86b07163bc5b6444e960418d7ba8daef, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -707,8 +708,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.11, y: 1.36}
-  m_Size: {x: 3.7822762, y: 2.3960915}
+  m_Offset: {x: -0.11000032, y: 1.5609004}
+  m_Size: {x: 3.9213665, y: 2.4115455}
   m_Direction: 1
 --- !u!50 &2025919779
 Rigidbody2D:
@@ -731,6 +732,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &2025919780
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025919775}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e1ee0ce8a88de4f4086cdc888e6fd5fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2033238499
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,7 +776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033238499}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.48099995, y: 0.24900007, z: 0}
+  m_LocalPosition: {x: 0.48099995, y: 0.419, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2025919777}
@@ -803,7 +823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119466943}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1309998, y: 0.24900007, z: 0}
+  m_LocalPosition: {x: -1.1309998, y: 0.419, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2025919777}
