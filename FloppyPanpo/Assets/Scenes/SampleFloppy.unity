@@ -673,8 +673,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fc4af2df4804e479fb5595268fb3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 0.25
-  jumpSpeed: 5
+  walkSpeed: 10
+  jumpSpeed: 100
 --- !u!95 &1787280931
 Animator:
   serializedVersion: 3
@@ -705,8 +705,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1000
+  m_UseAutoMass: 1
+  m_Mass: 8.238462
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
