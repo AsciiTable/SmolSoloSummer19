@@ -8,7 +8,7 @@ public class UpdateHandler : MonoBehaviour
 
     public static event onUpdate UpdateOccured;
 
-    private void FixedUpdate()
+    private void Update()
     {
         if (UpdateOccured != null)
             UpdateOccured();

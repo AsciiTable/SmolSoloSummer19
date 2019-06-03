@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Create abstract character class that panpo floppy will inherit from 
-public class PlayerControl : MonoBehaviour
+public abstract class Playable : MonoBehaviour
 {
-    [SerializeField] private float walkSpeed = 5.0f;
-    [SerializeField] private float jumpSpeed = 5.0f;
-
-    // Allows the entire game object to flip
+    public float walkSpeed;
+    public float jumpForce;
+    public abstract void attack();
+    public abstract void special();
+    public virtual void control(float walkSpeed, float jumpForce) {
+            // Allows the entire game object to flip
     private bool flipped = false;
 
     // Single Jump Security Guards
@@ -29,10 +30,11 @@ public class PlayerControl : MonoBehaviour
     {
         float deltaX = Input.GetAxis("Horizontal") * walkSpeed * Time.deltaTime;
         Vector2 direction = new Vector2(deltaX, 0f);
-        if (deltaX != 0) {
+        if (deltaX != 0)
+        {
             if (deltaX < 0 && !flipped)
             {
-                transform.localScale = new Vector3(-1, transform.localScale.y,transform.localScale.z);
+                transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
                 flipped = true;
             }
             else if (deltaX > 0 && flipped)
@@ -51,30 +53,12 @@ public class PlayerControl : MonoBehaviour
         }
         //Change to "Jump" reverse changes on vertical input
         //make work w/o one jump, should be revolved around ground detection
-        if (Input.GetButtonDown("Vertical") && !inAir && oneJump < 1) {
+        if (Input.GetButtonDown("Vertical") && !inAir && oneJump < 1)
+        {
             //connect rigidbody in awake then reference 
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpSpeed), ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             oneJump = 1;
         }
         transform.position += new Vector3(deltaX, 0, 0);
-    }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (inAir && (collision.gameObject.name == "Ground" || collision.gameObject.name == "Platform")) {
-            Debug.Log("Not in air.");
-            oneJump = 0;
-            inAir = false;
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (!inAir && (collision.gameObject.name != "Ground" || collision.gameObject.name != "Platform"))
-        {
-            Debug.Log("In air.");
-            oneJump = 1;
-            inAir = true;
-        }
     }
 }
