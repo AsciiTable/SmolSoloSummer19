@@ -667,6 +667,7 @@ GameObject:
   - component: {fileID: 2025919779}
   - component: {fileID: 2025919780}
   - component: {fileID: 2025919781}
+  - component: {fileID: 2025919782}
   m_Layer: 8
   m_Name: Panpo
   m_TagString: Player
@@ -802,13 +803,27 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025919775}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6fc4af2df4804e479fb5595268fb3b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 10
   jumpSpeed: 100
+--- !u!114 &2025919782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025919775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2552304112a356745b132913679868d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 10
+  jumpForce: 100
 --- !u!1 &2033238499
 GameObject:
   m_ObjectHideFlags: 0
