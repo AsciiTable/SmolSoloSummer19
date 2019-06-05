@@ -4,10 +4,14 @@ using UnityEngine;
 
 public abstract class Playable : MonoBehaviour
 {
+    // Variables to be inherited 
     public float walkSpeed;
-    public float jumpForce;
+    public float jumpMultiplier;
+
+    // Methods to be implemented 
     public abstract void attack();
     public abstract void special();
+
 
     // Allows the entire game object to flip
     private bool flipped = false;
@@ -15,6 +19,14 @@ public abstract class Playable : MonoBehaviour
     // Single Jump Security Guards
     bool inAir = false;
     int oneJump = 0;
+    private Rigidbody2D rb;
+    private Animator anim;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
 
     public virtual void OnEnable() {
         UpdateHandler.UpdateOccured += control;
@@ -30,33 +42,30 @@ public abstract class Playable : MonoBehaviour
         Vector2 direction = new Vector2(deltaX, 0f);
         if (deltaX != 0)
         {
-            Debug.Log("DeltaX: " + deltaX);
             if (deltaX < 0 && !flipped)
             {
-                Debug.Log("Flipping Left");
                 transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
                 flipped = true;
             }
             else if (deltaX > 0 && flipped)
             {
-                Debug.Log("Flipping Right");
                 transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
                 flipped = false;
             }
             //Create iswalking event create animator controller that responds to event 
             //HOld off for now
-            GetComponent<Animator>().SetBool("isWalking", true);
+            anim.SetBool("isWalking", true);
         }
         else
         {
-            GetComponent<Animator>().SetBool("isWalking", false);
+            anim.SetBool("isWalking", false);
         }
         //Change to "Jump" reverse changes on vertical input
         //make work w/o one jump, should be revolved around ground detection
         if (Input.GetButtonDown("Vertical") && !inAir && oneJump < 1)
         {
             //connect rigidbody in awake then reference 
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0, jumpMultiplier), ForceMode2D.Impulse);
             oneJump = 1;
         }
         transform.position += new Vector3(deltaX, 0, 0);
