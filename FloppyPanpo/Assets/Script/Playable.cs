@@ -9,6 +9,13 @@ public abstract class Playable : MonoBehaviour
     public abstract void attack();
     public abstract void special();
 
+    // Allows the entire game object to flip
+    private bool flipped = false;
+
+    // Single Jump Security Guards
+    bool inAir = false;
+    int oneJump = 0;
+
     public virtual void OnEnable() {
         UpdateHandler.UpdateOccured += control;
     }
@@ -19,24 +26,20 @@ public abstract class Playable : MonoBehaviour
     }
 
     private void control() {
-        // Allows the entire game object to flip
-        bool flipped = false;
-
-        // Single Jump Security Guards
-        bool inAir = false;
-        int oneJump = 0;
-
         float deltaX = Input.GetAxis("Horizontal") * walkSpeed * Time.deltaTime;
         Vector2 direction = new Vector2(deltaX, 0f);
         if (deltaX != 0)
         {
+            Debug.Log("DeltaX: " + deltaX);
             if (deltaX < 0 && !flipped)
             {
+                Debug.Log("Flipping Left");
                 transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
                 flipped = true;
             }
             else if (deltaX > 0 && flipped)
             {
+                Debug.Log("Flipping Right");
                 transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
                 flipped = false;
             }
