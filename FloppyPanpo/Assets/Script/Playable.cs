@@ -5,20 +5,18 @@ using UnityEngine;
 public abstract class Playable : MonoBehaviour
 {
     // Variables to be inherited 
-    public float walkSpeed;
-    public float jumpMultiplier;
+    [SerializeField]protected float walkSpeed;
+    [SerializeField]protected float jumpMultiplier;
+    [SerializeField]protected float fallMultiplier;
 
     // Methods to be implemented 
-    public abstract void attack();
-    public abstract void special();
-
+    protected abstract void attack();
+    protected abstract void special();
 
     // Allows the entire game object to flip
     private bool flipped = false;
-
-    // Single Jump Security Guards
-    bool inAir = false;
-    int oneJump = 0;
+    
+    // Component initialization
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -38,8 +36,10 @@ public abstract class Playable : MonoBehaviour
     }
 
     private void control() {
+        // Move left and right
         float deltaX = Input.GetAxis("Horizontal") * walkSpeed * Time.deltaTime;
-        Vector2 direction = new Vector2(deltaX, 0f);
+
+        // Flip checkers
         if (deltaX != 0)
         {
             if (deltaX < 0 && !flipped)
@@ -53,20 +53,25 @@ public abstract class Playable : MonoBehaviour
                 flipped = false;
             }
             //Create iswalking event create animator controller that responds to event 
-            //HOld off for now
+            //Hold off for now
             anim.SetBool("isWalking", true);
         }
         else
         {
             anim.SetBool("isWalking", false);
         }
-        //Change to "Jump" reverse changes on vertical input
-        //make work w/o one jump, should be revolved around ground detection
-        if (Input.GetButtonDown("Vertical") && !inAir && oneJump < 1)
-        {
-            //connect rigidbody in awake then reference 
-            rb.AddForce(new Vector2(0, jumpMultiplier), ForceMode2D.Impulse);
-            oneJump = 1;
+
+        // Jump
+        // If falling, increase falling speed +/ play falling animation
+        if (rb.velocity.y < 0) {
+            rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+        if (Input.GetButtonDown("Jump")) {
+            // If on ground (no change in y axis), then allow the player to jump
+            if (rb.velocity.y == 0) {
+                rb.velocity = Vector2.up * jumpMultiplier;
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (jumpMultiplier - 1) * Time.deltaTime;
+            }
         }
         transform.position += new Vector3(deltaX, 0, 0);
     }
