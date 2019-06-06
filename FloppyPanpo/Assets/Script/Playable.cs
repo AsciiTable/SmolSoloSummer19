@@ -19,6 +19,7 @@ public abstract class Playable : MonoBehaviour
     // Component initialization
     private Rigidbody2D rb;
     private Animator anim;
+    private float previousVelocity;
 
     private void Awake()
     {
@@ -66,9 +67,11 @@ public abstract class Playable : MonoBehaviour
         if (rb.velocity.y < 0) {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
+
         if (Input.GetButtonDown("Jump")) {
             // If on ground (no change in y axis), then allow the player to jump
-            if (rb.velocity.y == 0) {
+            float acceleration = (rb.velocity.y - previousVelocity) / Time.fixedDeltaTime;
+            if (rb.velocity.y == 0 && acceleration == 0) {
                 rb.velocity = Vector2.up * jumpMultiplier;
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (jumpMultiplier - 1) * Time.deltaTime;
             }
