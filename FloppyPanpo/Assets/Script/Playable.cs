@@ -76,6 +76,14 @@ public abstract class Playable : MonoBehaviour
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (jumpMultiplier - 1) * Time.deltaTime;
             }
         }
+
+        if (rb.velocity.y != 0)
+        {
+            anim.SetBool("inAir", true);
+        }
+        else {
+            anim.SetBool("inAir", false);
+        }
         transform.position += new Vector3(deltaX, 0, 0);
     }
 }
