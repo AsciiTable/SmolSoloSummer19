@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Floppy : Playable
 {
-    protected override void attack()
+    protected override void passive()
     {
     }
     protected override void special()

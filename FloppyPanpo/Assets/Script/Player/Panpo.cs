@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Panpo : Playable
 {
-    protected override void attack() {
+    protected override void passive() {
+
     }
     protected override void special() {
     }

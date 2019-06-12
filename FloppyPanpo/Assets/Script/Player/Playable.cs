@@ -10,7 +10,7 @@ public abstract class Playable : MonoBehaviour
     [SerializeField]protected float fallMultiplier;
 
     // Methods to be implemented 
-    protected abstract void attack();
+    protected abstract void passive();
     protected abstract void special();
 
     // Allows the entire game object to flip
