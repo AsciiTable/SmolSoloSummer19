@@ -41,6 +41,7 @@ public abstract class Playable : MonoBehaviour
         UpdateHandler.UpdateOccured -= passive;
     }
 
+    // Resets any external changes to original speed
     protected virtual void ResetSpeed() {
         walkSpeed = walkSpeedOriginal;
     }
