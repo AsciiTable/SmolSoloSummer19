@@ -18,6 +18,16 @@ public class Panpo : Playable
     private bool awakePassive = false;
     private float increasedMovement = 0f;
 
+
+    // SPECIAL: Inspector variables
+    [SerializeField] private float specialDuration = 2.5f;
+    [SerializeField] private float specialCD = 10.0f;
+
+    // SPECIAL: Timer variables to start/reset/end special
+    private bool isAvalible = true;
+   
+
+
     protected override void passive() {
         // If the game just began, calculate the value of the increased move speed
         if (!awakePassive) {
@@ -52,7 +62,9 @@ public class Panpo : Playable
         }
     }
 
-
     protected override void special() {
+        if (Input.GetMouseButton(0)) { // CHECK THIS BUTTON WHEN ONLINE
+
+        }
     }
 }
