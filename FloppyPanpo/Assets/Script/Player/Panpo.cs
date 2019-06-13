@@ -64,7 +64,10 @@ public class Panpo : Playable
 
     protected override void special() {
         if (Input.GetMouseButton(0)) { // CHECK THIS BUTTON WHEN ONLINE
-
+            if (Input.GetButtonDown("Jump")){
+                rb.velocity = Vector2.up * jumpMultiplier;
+                rb.velocity += Vector2.up * Physics2D.gravity.y * (jumpMultiplier - 1) * Time.deltaTime;
+            }
         }
     }
 }
