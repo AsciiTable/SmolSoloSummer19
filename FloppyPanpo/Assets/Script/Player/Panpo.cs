@@ -26,9 +26,6 @@ public class Panpo : Playable
         {
             startTimeRunning = Time.time;
         }
-        else {
-            timerStarted = false;
-        }
 
         if (Input.GetButton("Horizontal") && Time.time - startTimeRunning > timeSpentRunning)
         {
@@ -40,10 +37,12 @@ public class Panpo : Playable
 
             if (Time.time - startTimeSpeed < timeWithIncSpeed)
             {
+                //Debug.Log("Time Sped up: " + (Time.time - startTimeSpeed));
                 walkSpeed = increasedMovement;
             }
             else
             {
+                Debug.Log("Reached inner Reset");
                 ResetSpeed();
                 timerStarted = false;
                 startTimeRunning = Time.time;
