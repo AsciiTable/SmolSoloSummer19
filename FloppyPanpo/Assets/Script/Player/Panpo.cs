@@ -6,14 +6,55 @@ public class Panpo : Playable
 {
     [SerializeField] private float moveSpeedMultiplier = 1.3f;
     [SerializeField] private float timeSpentRunning = 4.0f;
-    private float startTime = 0f;
+    [SerializeField] private float timeWithIncSpeed = 2.0f;
+
+    private float startTimeRunning = 0f;
+    private bool  timerStarted = false;
+    private float startTimeSpeed = 0f;
+
+    private bool awake = false;
+    private float increasedMovement = 0f;
+
     protected override void passive() {
-        //if()
-        walkSpeed = walkSpeed * moveSpeedMultiplier;
+        Debug.Log("Move Speed: " + walkSpeed);
+        if (!awake) {
+            increasedMovement = walkSpeed * moveSpeedMultiplier;
+            awake = true;
+        }
+
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            startTimeRunning = Time.time;
+        }
+        else {
+            timerStarted = false;
+        }
+
+        if (Input.GetButton("Horizontal") && Time.time - startTimeRunning > timeSpentRunning)
+        {
+            if (!timerStarted)
+            {
+                startTimeSpeed = Time.time;
+                timerStarted = true;
+            }
+
+            if (Time.time - startTimeSpeed < timeWithIncSpeed)
+            {
+                walkSpeed = increasedMovement;
+            }
+            else
+            {
+                ResetSpeed();
+                timerStarted = false;
+                startTimeRunning = Time.time;
+            }
+        }
+        else {
+            ResetSpeed();
+            timerStarted = false;
+        }
     }
     protected override void special() {
     }
 
-    private IEnumerable PassiveTimer() {
-    }
 }

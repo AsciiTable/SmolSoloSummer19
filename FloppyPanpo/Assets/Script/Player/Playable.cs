@@ -20,20 +20,29 @@ public abstract class Playable : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private float previousVelocity;
+    private float walkSpeedOriginal;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        walkSpeedOriginal = walkSpeed;
     }
 
     public virtual void OnEnable() {
         UpdateHandler.UpdateOccured += control;
+        UpdateHandler.UpdateOccured += passive;
+
     }
 
     public virtual void OnDisable()
     {
         UpdateHandler.UpdateOccured -= control;
+        UpdateHandler.UpdateOccured -= passive;
+    }
+
+    protected virtual void ResetSpeed() {
+        walkSpeed = walkSpeedOriginal;
     }
 
     private void control() {
