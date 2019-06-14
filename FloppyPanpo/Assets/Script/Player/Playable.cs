@@ -17,7 +17,7 @@ public abstract class Playable : MonoBehaviour
     private bool flipped = false;
     
     // Component initialization
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
     private Animator anim;
     private float previousVelocity;
     private float walkSpeedOriginal;
@@ -32,6 +32,7 @@ public abstract class Playable : MonoBehaviour
     public virtual void OnEnable() {
         UpdateHandler.UpdateOccured += control;
         UpdateHandler.UpdateOccured += passive;
+        UpdateHandler.UpdateOccured += special;
 
     }
 
@@ -39,6 +40,7 @@ public abstract class Playable : MonoBehaviour
     {
         UpdateHandler.UpdateOccured -= control;
         UpdateHandler.UpdateOccured -= passive;
+        UpdateHandler.UpdateOccured -= special;
     }
 
     // Resets any external changes to original speed
