@@ -25,7 +25,9 @@ public class Panpo : Playable
 
     // SPECIAL: Timer variables to start/reset/end special
     private bool isAvalible = true;
+    private bool specialIsActive = false;
 
+    // PASSIVE
     protected override void passive() {
         // If the game just began, calculate the value of the increased move speed
         if (!awakePassive) {
@@ -60,9 +62,15 @@ public class Panpo : Playable
         }
     }
 
+    // SPECIAL
     protected override void special() {
-        if (Input.GetMouseButtonDown(0)) { // CHECK THIS BUTTON WHEN ONLINE: 
-            if (Input.GetButtonDown("Jump") ){
+        if (Input.GetMouseButtonDown(0)) { 
+
+        }
+
+        if (specialIsActive) {
+            if (Input.GetButtonDown("Jump"))
+            {
                 rb.velocity = Vector2.up * jumpMultiplier;
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (jumpMultiplier - 1) * Time.deltaTime;
             }
