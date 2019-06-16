@@ -26,6 +26,7 @@ public class Panpo : Playable
     // SPECIAL: Timer variables to start/reset/end special
     private bool isAvalible = true;
     private bool specialIsActive = false;
+    private float cooldown = 0f;
 
     // PASSIVE
     protected override void passive() {
@@ -64,8 +65,8 @@ public class Panpo : Playable
 
     // SPECIAL
     protected override void special() {
-        if (Input.GetMouseButtonDown(0)) { 
-
+        if (Input.GetMouseButtonDown(0)) { // && CD == 0
+            
         }
 
         if (specialIsActive) {
