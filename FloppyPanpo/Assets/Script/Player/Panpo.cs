@@ -27,6 +27,7 @@ public class Panpo : Playable
     private bool isAvalible = true;
     private bool specialIsActive = false;
     private float cooldown = 0f;
+    private float duration = 0f;
 
     // PASSIVE
     protected override void passive() {
@@ -65,13 +66,14 @@ public class Panpo : Playable
 
     // SPECIAL
     protected override void special() {
-        if (Input.GetMouseButtonDown(0)) { // && CD == 0
-            
+        if (Input.GetMouseButtonDown(0) && isAvalible) {
+            isAvalible = false;
+            specialIsActive = true;
+            duration = Time.time;
         }
 
-        if (specialIsActive) {
-            if (Input.GetButtonDown("Jump"))
-            {
+        if (Input.GetButtonDown("Jump")) {
+            if (specialIsActive && Time.time - duration < specialDuration) {
                 rb.velocity = Vector2.up * jumpMultiplier;
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (jumpMultiplier - 1) * Time.deltaTime;
             }
