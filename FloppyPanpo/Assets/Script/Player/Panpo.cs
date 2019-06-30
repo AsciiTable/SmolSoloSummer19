@@ -64,11 +64,12 @@ public class Panpo : Playable
 
     // SPECIAL
     protected override void special() {
-        if (Input.GetMouseButtonDown(0) && isAvalible)
-        {
+        // If player activates the special while it is not on cooldown
+        if (Input.GetMouseButtonDown(0) && isAvalible){
             isAvalible = false;
             duration = Time.time;
         }
+        // If the special is on cooldown
         else if (!isAvalible) {
             if (Time.time - duration > specialCD) {
                 isAvalible = true;
