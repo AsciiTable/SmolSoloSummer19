@@ -25,8 +25,6 @@ public class Panpo : Playable
 
     // SPECIAL: Timer variables to start/reset/end special
     private bool isAvalible = true;
-    private bool specialIsActive = false;
-    private float cooldown = 0f;
     private float duration = 0f;
 
     // PASSIVE
@@ -66,14 +64,19 @@ public class Panpo : Playable
 
     // SPECIAL
     protected override void special() {
-        if (Input.GetMouseButtonDown(0) && isAvalible) {
+        if (Input.GetMouseButtonDown(0) && isAvalible)
+        {
             isAvalible = false;
-            specialIsActive = true;
             duration = Time.time;
+        }
+        else if (!isAvalible) {
+            if (Time.time - duration > specialCD) {
+                isAvalible = true;
+            }
         }
 
         if (Input.GetButtonDown("Jump")) {
-            if (specialIsActive && Time.time - duration < specialDuration) {
+            if (!isAvalible && Time.time - duration < specialDuration) {
                 rb.velocity = Vector2.up * jumpMultiplier;
                 rb.velocity += Vector2.up * Physics2D.gravity.y * (jumpMultiplier - 1) * Time.deltaTime;
             }
