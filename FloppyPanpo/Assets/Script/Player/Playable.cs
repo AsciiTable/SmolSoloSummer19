@@ -33,7 +33,6 @@ public abstract class Playable : MonoBehaviour
         UpdateHandler.UpdateOccured += control;
         UpdateHandler.UpdateOccured += passive;
         UpdateHandler.UpdateOccured += special;
-
     }
 
     public virtual void OnDisable()
