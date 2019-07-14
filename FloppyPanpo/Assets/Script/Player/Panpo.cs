@@ -75,7 +75,7 @@ public class Panpo : Playable
                 isAvalible = true;
             }
         }
-
+        //Unlimited jump!
         if (Input.GetButtonDown("Jump")) {
             if (!isAvalible && Time.time - duration < specialDuration) {
                 rb.velocity = Vector2.up * jumpMultiplier;

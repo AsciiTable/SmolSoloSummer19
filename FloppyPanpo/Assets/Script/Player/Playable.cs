@@ -14,7 +14,7 @@ public abstract class Playable : MonoBehaviour
     protected abstract void special();
 
     // Allows the entire game object to flip
-    private bool flipped = false;
+    [HideInInspector]protected bool flipped = false;
     
     // Component initialization
     protected Rigidbody2D rb;

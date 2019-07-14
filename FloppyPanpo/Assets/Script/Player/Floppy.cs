@@ -7,12 +7,13 @@ public class Floppy : Playable
     // SPECIAL: Inspector variables
     [SerializeField] private float specialCD = 10.0f;
     [SerializeField] private float chargeMaxTime = 2f;
+    [SerializeField] private float boostSpeed = 10f;
 
     // SPECIAL: Timer variables to start/reset/end special
-    private bool isAvalible = false;
-    private bool inLeap = false;
+    private bool isAvalible = true;
     private bool isCharging = false;
     private float initHold = 0f;
+    private float holdTime = 0f;
 
     protected override void passive()
     {
@@ -22,7 +23,7 @@ public class Floppy : Playable
     protected override void special()
     {
         // Start charging leap
-        if (Input.GetMouseButtonDown(0) && isAvalible)
+        if (Input.GetMouseButton(0) && isAvalible)
         {
             isAvalible = false;
             isCharging = true;
@@ -39,8 +40,21 @@ public class Floppy : Playable
         // If charging, look for release && leap!
         if (isCharging) {
             if (Input.GetMouseButtonUp(0) || Time.time - initHold >= chargeMaxTime) {
+                holdTime = Time.time - initHold;
+                if (holdTime > 2) {
+                    holdTime = 2f;
+                }
                 isCharging = false;
-                // Charged Leap
+
+                // Leap/Dash/Charge
+                if (flipped)
+                {
+                    rb.velocity = Vector2.left * boostSpeed * (holdTime / chargeMaxTime);
+                }
+                else
+                {
+                    rb.velocity = Vector2.right * boostSpeed * (holdTime / chargeMaxTime);
+                }
             }
         }
     }
