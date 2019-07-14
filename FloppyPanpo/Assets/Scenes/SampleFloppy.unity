@@ -669,7 +669,7 @@ GameObject:
   - component: {fileID: 1787280933}
   - component: {fileID: 1787280932}
   - component: {fileID: 1787280931}
-  - component: {fileID: 1787280930}
+  - component: {fileID: 1787280936}
   m_Layer: 8
   m_Name: Floppy
   m_TagString: Player
@@ -677,20 +677,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1787280930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787280929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6fc4af2df4804e479fb5595268fb3b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  walkSpeed: 10
-  jumpSpeed: 100
 --- !u!95 &1787280931
 Animator:
   serializedVersion: 3
@@ -813,6 +799,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1787280936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1787280929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e2ffe7ff5f868648b6a9d2b29acae08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSpeed: 10
+  jumpMultiplier: 15
+  fallMultiplier: 3
+  specialCD: 10
+  chargeMaxTime: 2
 --- !u!1 &1794015217
 GameObject:
   m_ObjectHideFlags: 0
